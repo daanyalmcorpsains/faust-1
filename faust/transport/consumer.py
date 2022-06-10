@@ -1332,7 +1332,7 @@ class ConsumerThread(QueueServiceThread):
     ) -> None:
         """Call on rebalance when partitions are being assigned."""
         await self.consumer.threadsafe_partitions_assigned(
-            self.thread_loop, assigned, generation_id
+            self.parent_loop, assigned, generation_id
         )
 
     @abc.abstractmethod
