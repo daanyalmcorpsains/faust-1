@@ -1181,8 +1181,8 @@ class Consumer(Service, ConsumerT):
                                 if self._n_acked >= commit_every:
                                     self._n_acked = 0
                                     await self.commit()
-                            await self.wait_first(
-                                callback(message), self.suspend_flow.wait()
+                            await asyncio.wait_for(
+                                callback(message), 20
                             )
                             set_read_offset(tp, offset)
                         else:
